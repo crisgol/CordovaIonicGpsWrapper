@@ -12,6 +12,7 @@ import org.apache.cordova.*;
 import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONException;
+
 import java.util.List;
 import java.util.Arrays;
 import java.math.BigInteger;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 public class CordovaIonicGpsWrapper extends CordovaPlugin implements LocationListener {
 
     public Location location = null;
+    public static boolean locating;
     private static String TAG = "GPSWrapper";
     protected LocationManager locationManager;
     protected LocationListener locationListener;
@@ -38,7 +40,7 @@ public class CordovaIonicGpsWrapper extends CordovaPlugin implements LocationLis
         Log.d(TAG, "execute() called. action:" + action);
 
         switch (action) {
-            case "GetCurrentLocation": {
+            case "GetLastKnownLocation": {
                 String latLon = "";
                 if (location != null) {
                     latLon = "Lat: " + location.getLatitude() + " Lon: " + location.getLongitude();
@@ -46,6 +48,38 @@ public class CordovaIonicGpsWrapper extends CordovaPlugin implements LocationLis
                     latLon = "Still waiting on location";
                 }
                 callbackContext.success(latLon);
+                callBackResult = true;
+                break;
+            }
+            case "StartListeningToLocation": {
+                startListeningToLocation();
+                cordova.getThreadPool().execute(new Runnable() {
+                    public void run() {
+                        while (locating == true) {
+                            Log.d(TAG, "StartListeningToLocation looping threadId:" + Thread.currentThread().getId());
+                            Location currentLocation = getCurrentLocation();
+
+                            try {
+                                Thread.sleep(500);
+                                JSONObject jo = new JSONObject();
+                                jo.put("lat", currentLocation.getLatitude());
+                                jo.put("lon", currentLocation.getLongitude());
+                                PluginResult _pluginResult = new PluginResult(PluginResult.Status.OK, jo);
+                                callbackContext.sendPluginResult(_pluginResult);
+
+                            } catch (InterruptedException e) {
+                                Log.e(TAG, "error while (StartListeningToLocation) sleeping:", e);
+                            } catch (JSONException jsonException) {
+                                Log.e(TAG, "error jsonException (StartListeningToLocation) jsonException:", jsonException);
+                            }
+                        }
+                    }
+                });
+                callBackResult = true;
+                break;
+            }
+            case "StopListeningToLocation": {
+                stopListeningToLocation();
                 callBackResult = true;
                 break;
             }
@@ -69,8 +103,21 @@ public class CordovaIonicGpsWrapper extends CordovaPlugin implements LocationLis
         }
     }
 
+    private void stopListeningToLocation() {
+        locating = false;
+    }
+
+    private void startListeningToLocation() {
+        locating = true;
+    }
+
+    private Location getCurrentLocation() {
+        return this.location;
+    }
+
     @Override
     public void onLocationChanged(Location location) {
+        locating = true;
         this.location = location;
         Log.d(TAG, "onLocationChanged - Lat: " + location.getLatitude() + " Lon: " + location.getLongitude());
     }
