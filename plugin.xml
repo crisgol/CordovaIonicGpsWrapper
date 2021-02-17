@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        id="cordova-plugin-toastyplugin" version="0.0.1">
-    <name>ToastyPlugin</name>
+        id="cordova-plugin-cordovaionicgpswrapperplugin" version="0.0.1">
+    <name>CordovaIonicGpsWrapperPlugin</name>
 
     <description>An Android Cordova plugin that wraps talks to android GPS and not w3c library</description>
     <license>MIT</license>
 
-    <keywords>cordova,android,toast,message,alert</keywords>
+    <keywords>cordova,android,gps</keywords>
     <repo>https://github.com/snc001/CordovaIonicGpsWrapper.git</repo>
     <issue>https://github.com/snc001/CordovaIonicGpsWrapper/issues</issue>
   
