@@ -1,4 +1,4 @@
-package nz.co.monitorbm.ionicgpswrapper
+package nz.co.monitorbm.ionicgpswrapper;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -8,6 +8,14 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.widget.TextView;
 import android.util.Log;
+import org.apache.cordova.*;
+import org.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONException;
+import java.util.List;
+import java.util.Arrays;
+import java.math.BigInteger;
+import java.util.ArrayList;
 
 public class CordovaIonicGpsWrapper extends CordovaPlugin implements LocationListener {
 
@@ -21,6 +29,7 @@ public class CordovaIonicGpsWrapper extends CordovaPlugin implements LocationLis
         super.initialize(cordova, webView);
 
         Log.d(TAG, "===== GPSWrapper Initialize ====");
+        bindLocationServices();
     }
 
     @Override
@@ -47,13 +56,12 @@ public class CordovaIonicGpsWrapper extends CordovaPlugin implements LocationLis
     private void bindLocationServices() {
         Context context = this.cordova.getActivity().getApplicationContext();
         try {
-            locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
+            locationManager = (LocationManager) context.getSystemService(context.LOCATION_SERVICE);
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
             if (locationManager != null) {
                 location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                 if (location != null) {
-                    latitude = location.getLatitude();
-                    longitude = location.getLongitude();
+                    location = location;
                 }
             }
         } catch (Exception e) {
@@ -64,7 +72,7 @@ public class CordovaIonicGpsWrapper extends CordovaPlugin implements LocationLis
     @Override
     public void onLocationChanged(Location location) {
         this.location = location;
-        Log.d(TAG, "onLocationChanged - Lat: " + location.getLatitude() + " Lon: " + location.getLongitude(););
+        Log.d(TAG, "onLocationChanged - Lat: " + location.getLatitude() + " Lon: " + location.getLongitude());
     }
 
     @Override

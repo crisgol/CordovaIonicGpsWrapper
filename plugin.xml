@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<plugin id="nz.co.monitorbm.bluepos" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+<plugin id="nz.co.monitorbm.ionicgpswrapper" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android">
-    <name>BluePos</name>
-    <js-module name="CordovaIonicGpsWrapper" src="www/CordovaIonicGpsWrapperPlugin.js">
-        <clobbers target="cordova.plugins.CordovaIonicGpsWrapper"/>
+    <name>CordovaIonicGpsWrapper</name>
+    <js-module name="CordovaIonicGpsWrapper" src="www/cordovaconiccpscrapper.js">
+        <clobbers target="cordova.plugins.cordovaconiccpscrapper"/>
     </js-module>
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
