@@ -8,8 +8,8 @@
     <license>MIT</license>
 
     <keywords>cordova,android,toast,message,alert</keywords>
-    <repo>https://github.com/stanidesis/toastyplugin/Toast-PhoneGap-Plugin.git</repo>
-    <issue>https://github.com/stanidesis/toastyplugin/issues</issue>
+    <repo>https://github.com/snc001/CordovaIonicGpsWrapper.git</repo>
+    <issue>https://github.com/snc001/CordovaIonicGpsWrapper/issues</issue>
   
     <engines>
         <engine name="cordova" version=">=3.0.0"/>
