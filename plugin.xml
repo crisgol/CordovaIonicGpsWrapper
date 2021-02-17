@@ -4,7 +4,7 @@
         id="cordova-plugin-toastyplugin" version="0.0.1">
     <name>ToastyPlugin</name>
 
-    <description>An Android Cordova plugin that allows users to display simple Toast messages at the bottom of the screen.</description>
+    <description>An Android Cordova plugin that wraps talks to android GPS and not w3c library</description>
     <license>MIT</license>
 
     <keywords>cordova,android,toast,message,alert</keywords>
@@ -15,8 +15,8 @@
         <engine name="cordova" version=">=3.0.0"/>
     </engines>
   
-    <js-module src="www/toastyplugin.js" name="toastyPlugin">
-        <clobbers target="window.plugins.toastyPlugin" />
+    <js-module src="www/CordovaIonicGpsWrapperPlugin.js" name="CordovaIonicGpsWrapperPlugin">
+        <clobbers target="window.plugins.CordovaIonicGpsWrapperPlugin" />
     </js-module>
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
