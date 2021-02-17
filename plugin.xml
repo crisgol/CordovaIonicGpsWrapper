@@ -1,30 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        id="cordova-plugin-cordovaionicgpswrapperplugin" version="0.0.1">
-    <name>CordovaIonicGpsWrapperPlugin</name>
-
-    <description>An Android Cordova plugin that wraps talks to android GPS and not w3c library</description>
-    <license>MIT</license>
-
-    <keywords>cordova,android,gps</keywords>
-    <repo>https://github.com/snc001/CordovaIonicGpsWrapper.git</repo>
-    <issue>https://github.com/snc001/CordovaIonicGpsWrapper/issues</issue>
-  
-    <engines>
-        <engine name="cordova" version=">=3.0.0"/>
-    </engines>
-  
-    <js-module src="www/CordovaIonicGpsWrapperPlugin.js" name="CordovaIonicGpsWrapperPlugin">
-        <clobbers target="window.plugins.CordovaIonicGpsWrapperPlugin" />
+<?xml version="1.0" encoding="utf-8" ?>
+<plugin id="nz.co.monitorbm.bluepos" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>BluePos</name>
+    <js-module name="CordovaIonicGpsWrapper" src="www/CordovaIonicGpsWrapperPlugin.js">
+        <clobbers target="cordova.plugins.CordovaIonicGpsWrapper"/>
     </js-module>
     <platform name="android">
-        <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="CordovaIonicGpsWrapperPlugin">
-                <param name="android-package" value="com.mbm.cordova.plugin.CordovaIonicGpsWrapperPlugin"/>
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="CordovaIonicGpsWrapper">
+                <param name="android-package" value="nz.co.monitorbm.ionicgpswrapper.CordovaIonicGpsWrapper"/>
             </feature>
         </config-file>
-
-        <source-file src="src/android/GpsWrapperPlugin.java" target-dir="src/com/stanleyidesis/cordova/plugin" />
+        <config-file parent="/*" target="AndroidManifest.xml"/>
+        <source-file src="src/android/CordovaIonicGpsWrapper.java"
+                     target-dir="src/nz/co/monitorbm/ionicgpswrapper/CordovaIonicGpsWrapper"/>
     </platform>
 </plugin>

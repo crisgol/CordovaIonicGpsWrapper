@@ -1,0 +1,17 @@
+{
+  "name": "nz.co.monitorbm.ionicgpswrapper",
+  "version": "1.0.0",
+  "description": "Custom GPS wrapper",
+  "cordova": {
+    "id": "nz.co.monitorbm.ionicgpswrapper",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "Nikky",
+  "license": "ISC"
+}
